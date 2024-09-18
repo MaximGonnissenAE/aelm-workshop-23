@@ -32,18 +32,18 @@ jobs:
         ls -la 
         docker build . -f Dockerfile -t aelm-workshop-23
 
-    dockerhub-publish:
-      needs: build
-      runs-on: ubuntu-latest
-      steps:
-      - uses: actions/checkout@v2
-      - name: login to docker hub
-        id: docker-hub
-        env:
-          username: ${{secrets.DOCKERHUB_TOKEN}}
-          password: ${{secrets.DOCKERHUB_USER}}
-        run: |
-          docker login -u $username -p $password
-      - name: push the docker image
-        id: push-docker-image
-        run: docker push ${{secrets.DOCKERHUB_USER}}/aelm-workshop-23
+  dockerhub-publish:
+    needs: docker-build
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: login to docker hub
+      id: docker-hub
+      env:
+        username: ${{secrets.DOCKERHUB_TOKEN}}
+        password: ${{secrets.DOCKERHUB_USER}}
+      run: |
+        docker login -u $username -p $password
+    - name: push the docker image
+      id: push-docker-image
+      run: docker push ${{secrets.DOCKERHUB_USER}}/aelm-workshop-23
