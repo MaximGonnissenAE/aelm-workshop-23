@@ -2,7 +2,7 @@ FROM alpine
 
 WORKDIR /app
 
-COPY bin/workshop /app/bin/workshop
+COPY workshop-service/bin/workshop /app/bin/workshop
 
 # This makes sure that the application will run correctly on Openshift
 RUN chgrp -R 0 /app/bin/workshop && \

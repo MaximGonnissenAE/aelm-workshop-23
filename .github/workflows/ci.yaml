@@ -18,7 +18,7 @@ jobs:
         go-version: '1.21'
 
     - name: Build
-      run: go build -o ../bin/workshop
+      run: go build -o bin/workshop
       working-directory: ./workshop-service
 
   docker-build:
