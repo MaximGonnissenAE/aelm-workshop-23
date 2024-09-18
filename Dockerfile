@@ -1,4 +1,4 @@
-FROM <<TODO>>
+FROM ubuntu-latest
 
 WORKDIR /app
 
